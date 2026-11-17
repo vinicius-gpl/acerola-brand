@@ -106,6 +106,8 @@ brand book (App → Tela de erro). Nunca a página padrão do framework, do serv
 - Momento de marca, como o hero: de um lado o texto (eyebrow "Erro {status}" em
   `destructive-soft`, título grande, uma frase que diz o que fazer e duas ações); do outro, o palco
   com carimbo girando, o código em letreiro Titan One, a mascote, a fita e o adesivo "Ops!".
+- **Só o erro na tela**: sem barra de navegação, rodapé ou menu do app. A tela ocupa a janela
+  inteira, centralizada; as duas ações são a saída.
 - **Tela pequena** (o espaço da tela abaixo de 720px, por container query, não pela janela): o
   palco vem primeiro e menor, o texto centralizado embaixo e as duas ações dividem a largura. Tudo
   cabe na primeira tela do celular.

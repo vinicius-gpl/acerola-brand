@@ -535,9 +535,9 @@ img.ac-avatar {
 	gap: 3rem;
 	padding: 3.5rem 0;
 }
-/* As the whole page (not a preview inside another page). */
+/* As the whole page: the error stands alone (no topbar or footer), centered in the window. */
 .ac-error--page .ac-error__layout {
-	min-height: calc(100svh - 12rem);
+	min-height: 100svh;
 }
 @container (min-width: 720px) {
 	.ac-error__layout {
@@ -682,7 +682,6 @@ img.ac-avatar {
 		text-align: center;
 	}
 	.ac-error--page .ac-error__layout {
-		min-height: calc(100svh - 10rem);
 		align-content: center;
 	}
 	/* The stage comes first and fits the first screen with the copy. */

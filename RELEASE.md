@@ -1,5 +1,10 @@
 # Versões
 
+## 0.1.1 · 17 nov 2026
+
+- **Tela de erro sozinha:** sem barra de navegação e rodapé, só o erro e as duas ações, centralizado
+  na janela.
+
 ## 0.1.0 · 17 nov 2026
 
 Primeira versão publicada do brand book, em https://brand.acerola.app.
