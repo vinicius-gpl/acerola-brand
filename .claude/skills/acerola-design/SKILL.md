@@ -59,7 +59,7 @@ Escuro é o padrão. Divertido na marca (mascote, Titan One, adesivo, fita) e s�
 |---|---|---|
 | **DM Sans** | `font-sans` | tudo da interface: texto, botão, lista, título, número |
 | **Noto Serif** | `font-heading` | título editorial (post, documento). Raro |
-| **Titan One** | `font-display` | **só a marca**: letreiro, hero, splash, capa, fita, adesivo |
+| **Titan One** | `font-display` | **só a marca**: letreiro, hero, splash, capa, fita, adesivo, palco da tela de erro |
 
 - Texto forte: `font-black tracking-tight`. Número: `font-black tabular-nums`.
 - Título de tela: `text-[44px] font-black tracking-tighter leading-none`, com `text-xs
@@ -103,7 +103,12 @@ brand book (App → Tela de erro). Nunca a página padrão do framework, do serv
   próprio site, em `acerola-brand/src/`): `+error.svelte`,
   `acerola-error-screen.svelte`, `error.util.ts` e as chaves `error.*` em `messages.pt-br.json` e
   `messages.en.json`. Fora do Svelte, as classes `.ac-error*` do `components.css`.
-- Mascote, eyebrow "Erro {status}", título `ac-title`, uma frase que diz o que fazer e duas ações.
+- Momento de marca, como o hero: de um lado o texto (eyebrow "Erro {status}" em
+  `destructive-soft`, título grande, uma frase que diz o que fazer e duas ações); do outro, o palco
+  com carimbo girando, o código em letreiro Titan One, a mascote, a fita e o adesivo "Ops!".
+- **Tela pequena** (o espaço da tela abaixo de 720px, por container query, não pela janela): o
+  palco vem primeiro e menor, o texto centralizado embaixo e as duas ações dividem a largura. Tudo
+  cabe na primeira tela do celular.
 - Ação principal: **4xx → "Ir para o início"**; **5xx, tempo esgotado, limite e sem conexão →
   "Tentar de novo"**. A outra vira secundária (`bg-surface`).
 - O código (404) é decoração `aria-hidden`; nunca mostrar `error.message` cru, stack ou id técnico.
@@ -126,7 +131,7 @@ toda ação em até 100ms (toast, `pop`, troca de estado).
 - Entrada com GSAP, nunca CSS solto: em Svelte, as actions `staggerIn`, `revealIn`, `countUp`,
   `pop` e `spinWhile` (`lib/utils/motion.utils.ts`).
 - Curva da marca `--ease-brand` (`cubic-bezier(.32,.72,0,1)`); duração de interface 200–420ms.
-- Loop infinito (fita, carimbo, mascote respirando) só em tela de marca: hero, splash, vazio.
+- Loop infinito (fita, carimbo, mascote respirando) só em tela de marca: hero, splash, vazio, erro.
 - Tudo dentro de `gsap.matchMedia()` com `(prefers-reduced-motion: no-preference)` e `revert()` ao
   desmontar.
 

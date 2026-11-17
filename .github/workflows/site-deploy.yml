@@ -1,17 +1,23 @@
-# Publishes the brand book to GitHub Pages and the brand files to R2 on every push to main.
+# Publishes the brand book to GitHub Pages and the brand files to R2. Runs ONLY on a version tag
+# (vX.Y.Z, see the acerola-git skill), created on main by the release flow. A push to main or
+# develop publishes nothing; a pre-release tag (v1.2.0-rc.1) does not match and publishes nothing.
+#
+# The job refuses a tag that is not on main or that differs from acerola-brand/package.json.
 #
 # In the repository:
-# - Settings → Pages → Source: "GitHub Actions".
+# - Settings → Pages → Source: "GitHub Actions"; custom domain brand.acerola.app.
+# - Settings → Environments → github-pages → deployment tags: v*.
 # - R2 (optional; without it the files ship only with the site on Pages):
 #   - Secrets: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY (R2 API token with write access).
-#   - Variables: R2_BUCKET (bucket name) and ASSETS_URL (public bucket address, e.g.
-#     https://brand.vinicius-gpl.com). With ASSETS_URL, the page's download links and snippets
-#     point to R2.
+#   - Variables: R2_BUCKET (acerola-cdn), ASSETS_URL (https://cdn.acerola.app) and SITE_URL
+#     (https://brand.acerola.app). With ASSETS_URL, the page's download links and snippets point to R2.
+#   - acerola-brand/.env.example lists them.
 name: Deploy/Site
 
 on:
   push:
-    branches: [main]
+    tags: ['v[0-9]+.[0-9]+.[0-9]+']
+  # Redeploys an existing tag: pick the tag in "Use workflow from".
   workflow_dispatch:
 
 permissions:
@@ -32,6 +38,25 @@ jobs:
         working-directory: acerola-brand
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history: the next step checks that the tag is on main.
+          fetch-depth: 0
+
+      - name: Check the version tag
+        run: |
+          if [ "$GITHUB_REF_TYPE" != "tag" ]; then
+            echo "::error::Deploy only runs from a version tag (vX.Y.Z), not from $GITHUB_REF_NAME."
+            exit 1
+          fi
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "::error::Tag $GITHUB_REF_NAME is not on main. Tags come from the release flow."
+            exit 1
+          fi
+          version=$(node -p "require('./package.json').version")
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME differs from package.json version $version."
+            exit 1
+          fi
 
       - uses: actions/setup-node@v4
         with:
@@ -51,6 +76,7 @@ jobs:
       - name: Build
         env:
           ASSETS_URL: ${{ vars.ASSETS_URL }}
+          SITE_URL: ${{ vars.SITE_URL }}
         run: npm run build
 
       # Only the files go to R2 (brand/ and downloads/); the HTML stays on Pages.

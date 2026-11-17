@@ -263,15 +263,22 @@
 			>
 		{/each}
 	</div>
-	<div class="mt-6 rounded-sheet bg-background px-6 shadow-float sm:px-10">
-		<AcerolaErrorScreen
-			data={{
-				status: errorSample.status,
-				kind: errorKind(errorSample.status, errorSample.online),
-				mascot,
-				homeHref: resolve('/')
-			}}
-			ui={{ heading: 'h3' }}
-		/>
+	<div class="mt-6 grid gap-8">
+		{#each [{ id: 'wide', label: m['screens.error.wide'], frame: 'px-6 sm:px-10' }, { id: 'small', label: m['screens.error.small'], frame: 'mx-auto w-full max-w-[22rem] px-4' }] as preview (preview.id)}
+			<div class="grid gap-3">
+				<p class="text-xs font-semibold text-muted-foreground">{preview.label()}</p>
+				<div class="rounded-sheet bg-background shadow-float {preview.frame}">
+					<AcerolaErrorScreen
+						data={{
+							status: errorSample.status,
+							kind: errorKind(errorSample.status, errorSample.online),
+							mascot,
+							homeHref: resolve('/')
+						}}
+						ui={{ heading: 'h3' }}
+					/>
+				</div>
+			</div>
+		{/each}
 	</div>
 </AcerolaSection>

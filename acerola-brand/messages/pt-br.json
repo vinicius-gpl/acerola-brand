@@ -378,7 +378,9 @@
 			"eyebrow": "Erro",
 			"title": "Tela de erro",
 			"lead": "Uma tela só para qualquer erro: 404, 401, 403, 500, 503 e sem conexão. Em 4xx a ação principal leva ao início; em 5xx e sem conexão, tenta de novo. Nunca mostra a mensagem crua do erro.",
-			"status": "Código de erro"
+			"status": "Código de erro",
+			"wide": "Tela grande",
+			"small": "Tela pequena"
 		}
 	},
 	"landing": {

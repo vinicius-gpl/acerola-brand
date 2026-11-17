@@ -521,20 +521,26 @@ img.ac-avatar {
 
 /* Text on one side; on the other, a brand stage like the hero: a spinning stamp, the status code in
  * sticker lettering, the mascot, a running tape and a sticker. One action is primary: "home" for
- * 4xx, "retry" for 5xx and offline. */
+ * 4xx, "retry" for 5xx and offline.
+ *
+ * The layout follows the space the screen gets (container query), not the window: below 720px it
+ * becomes the small screen version, with the stage on top, smaller, and the copy centered. */
 .ac-error {
+	container-type: inline-size;
+	overflow-x: clip;
+}
+.ac-error__layout {
 	display: grid;
 	align-items: center;
 	gap: 3rem;
 	padding: 3.5rem 0;
-	overflow-x: clip;
 }
 /* As the whole page (not a preview inside another page). */
-.ac-error--page {
+.ac-error--page .ac-error__layout {
 	min-height: calc(100svh - 12rem);
 }
-@media (min-width: 768px) {
-	.ac-error {
+@container (min-width: 720px) {
+	.ac-error__layout {
 		grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
 	}
 }
@@ -554,7 +560,7 @@ img.ac-avatar {
 }
 .ac-error__title {
 	margin: 1rem 0 0;
-	font: 900 clamp(2.75rem, 5.5vw, 4.75rem) / 0.95 var(--font-sans);
+	font: 900 clamp(2.75rem, 6.5cqi, 4.75rem) / 0.95 var(--font-sans);
 	letter-spacing: -0.045em;
 	text-wrap: balance;
 }
@@ -598,7 +604,7 @@ img.ac-avatar {
 	margin: 0;
 	translate: -50% 0;
 	font-family: var(--font-display);
-	font-size: clamp(6rem, 15vw, 11rem);
+	font-size: clamp(6rem, 14cqi, 11rem);
 	line-height: 0.85;
 	user-select: none;
 }
@@ -665,6 +671,56 @@ img.ac-avatar {
 	box-shadow:
 		0 0 0 3px var(--crust),
 		4px 5px 0 3px var(--crust);
+}
+
+/* ---------- Error screen: small screen version ---------- */
+
+@container (max-width: 719.98px) {
+	.ac-error__layout {
+		gap: 1.25rem;
+		padding: 1.5rem 0 2.5rem;
+		text-align: center;
+	}
+	.ac-error--page .ac-error__layout {
+		min-height: calc(100svh - 10rem);
+		align-content: center;
+	}
+	/* The stage comes first and fits the first screen with the copy. */
+	.ac-error__stage {
+		order: -1;
+		width: min(100%, 19rem);
+	}
+	.ac-error__code {
+		font-size: clamp(4.25rem, 24cqi, 6rem);
+	}
+	.ac-error__tape {
+		font-size: 0.9rem;
+		padding: 0.4rem 0;
+	}
+	.ac-error__sticker {
+		right: 0;
+		font-size: 0.8rem;
+	}
+	.ac-error__copy {
+		display: grid;
+		justify-items: center;
+	}
+	.ac-error__title {
+		margin-top: 0.75rem;
+		font-size: clamp(2rem, 10cqi, 2.75rem);
+	}
+	.ac-error__text {
+		margin-top: 0.75rem;
+		font-size: 1rem;
+	}
+	/* Thumb-sized actions: side by side, splitting the width. */
+	.ac-error__actions {
+		width: 100%;
+		margin-top: 1.5rem;
+	}
+	.ac-error__actions > * {
+		flex: 1 1 9rem;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

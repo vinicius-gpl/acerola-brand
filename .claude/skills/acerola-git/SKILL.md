@@ -37,9 +37,28 @@ Igual em todo projeto, independente da linguagem. Os hooks (lefthook) travam o q
 
 - Nome em kebab-case e **em inglês** (ninguém de fora vê branch): `feature/hero-titan`,
   `bugfix/favicon-foreground`, nunca `feature/tela-de-lista`. Prefixo `feature/`, nunca `feat/`.
-- Tag de versão `vX.Y.Z` (semver) na `main`.
+- Tag de versão `vX.Y.Z` (semver) na `main`: regras na seção 2.1.
 - `scripts/git/branch-guard.sh` trava commit na `main`/`develop` e push na `main`. Quem
   administra libera a própria máquina: `git config project.admin true`.
+
+## 2.1 Tags 🔒
+
+Tag é a **única** coisa que publica: deploy e release rodam a partir dela, nunca de push em branch.
+
+| Tag | Formato | Publica? |
+|---|---|---|
+| Versão | `vMAJOR.MINOR.PATCH` (`v1.4.2`) | sim |
+| Pré-versão | `vX.Y.Z-rc.N` (`v1.5.0-rc.1`) | não: só para testar a release |
+
+- Sempre com `v` minúsculo e os três números, sem zero à esquerda (`v1.4.2`, nunca `1.4.2`,
+  `v1.4`, `V1.4.2` ou `v01.4.2`). Sem nome de local: a tag vale para o repositório.
+- **MAJOR** quebra quem usa (token renomeado, componente removido, API diferente); **MINOR**
+  acrescenta sem quebrar; **PATCH** só corrige. Antes da `v1.0.0`, MINOR pode quebrar.
+- Só nasce no commit de merge da `release/X.Y.Z` (ou `hotfix/X.Y.Z`) na `main`, **anotada** e com a
+  mensagem `[merge](local): Versão X.Y.Z` (`git tag -a vX.Y.Z -m "…"`).
+- O número é o mesmo do manifesto (`package.json`, `Cargo.toml`, Gradle). O workflow recusa tag
+  fora da `main` ou diferente do manifesto.
+- Tag publicada não se move nem se apaga. Saiu errado? Corrija e lance a próxima PATCH.
 
 ## 3. Hooks (lefthook)
 
@@ -70,7 +89,10 @@ Instalação: `node scripts/git/setup-git.mjs` (grava o Git-Flow, o template e r
   `<local>-deploy.yml`. Nome visível `Tests/<Local>`, `Release/<Local>`, `Deploy/<Local>`.
 - Gatilho de teste: `push` e `pull_request` em `develop` e `main`, com `paths` do local e do próprio
   workflow; `workflow_dispatch` sempre.
-- Deploy: `push` na `main` (ou tag `v*`), com `concurrency` para não sobrepor.
+- Deploy e release: **só** `push` de tag de versão, `tags: ['v[0-9]+.[0-9]+.[0-9]+']` (pré-versão
+  não casa e não publica), mais `workflow_dispatch` para republicar uma tag. O primeiro passo
+  confere que a tag está na `main` e bate com o manifesto. `concurrency` para não sobrepor.
+- O ambiente de deploy (ex.: `github-pages`) aceita só tags `v*`, nenhuma branch.
 - Ordem dos passos: checkout → setup da linguagem com cache → instalar → lint → check/tipos →
   design → i18n → testes → build → publicar. Se algo falha, nada é publicado.
 - Nome de job, step e arquivo de workflow em inglês (`name: Upload files to R2`).
@@ -87,5 +109,6 @@ Semanal, na `develop`, agrupado, com o prefixo do padrão para passar no hook:
 
 1. `release/X.Y.Z` a partir da `develop`; versão nos manifestos (`package.json`, `Cargo.toml`, Gradle).
 2. `RELEASE.md` com o que mudou, para quem usa.
-3. Merge na `main` e na `develop` (`[merge](local): Versão X.Y.Z`), tag `vX.Y.Z`.
-4. O workflow `<local>-release.yml` gera e publica os artefatos a partir da tag.
+3. Merge na `main` e na `develop` (`[merge](local): Versão X.Y.Z`).
+4. Tag anotada `vX.Y.Z` no merge da `main` e `git push origin vX.Y.Z` (seção 2.1).
+5. A tag dispara `<local>-deploy.yml` e `<local>-release.yml`, que publicam a partir dela.

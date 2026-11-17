@@ -378,7 +378,9 @@
 			"eyebrow": "Error",
 			"title": "Error screen",
 			"lead": "One screen for any error: 404, 401, 403, 500, 503 and offline. On 4xx the main action goes home; on 5xx and offline it tries again. It never shows the raw error message.",
-			"status": "Error code"
+			"status": "Error code",
+			"wide": "Large screen",
+			"small": "Small screen"
 		}
 	},
 	"landing": {

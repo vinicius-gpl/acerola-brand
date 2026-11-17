@@ -13,6 +13,9 @@
 	let { data, events = {}, ui = {} }: Props = $props();
 
 	let root: HTMLElement;
+	/** Unique per instance: the brand book shows two screens on one page. */
+	const uid = $props.id();
+	const titleId = `${uid}-error-title`;
 
 	const TEXT: Record<ErrorKind, { title: () => string; text: () => string }> = {
 		badRequest: { title: m['error.badRequest.title'], text: m['error.badRequest.text'] },
@@ -121,52 +124,57 @@
 <section
 	bind:this={root}
 	class={['ac-error', ui.page && 'ac-error--page']}
-	aria-labelledby="error-title"
+	aria-labelledby={titleId}
 >
-	<div class="ac-error__copy">
-		<p class="ac-error__eyebrow">{eyebrow}</p>
-		<svelte:element this={ui.heading ?? 'h1'} id="error-title" class="ac-error__title">
-			{text.title()}
-		</svelte:element>
-		<p class="ac-error__text">{text.text()}</p>
-		<div class="ac-error__actions">
-			{#if action === 'retry'}
-				<button
-					type="button"
-					class="ac-btn ac-btn--primary ac-btn--lg"
-					onclick={events.onRetry}>{m['error.actions.retry']()}</button
-				>
-				<a class="ac-btn ac-btn--lg" href={data.homeHref}>{m['error.actions.home']()}</a>
-			{:else}
-				<a class="ac-btn ac-btn--primary ac-btn--lg" href={data.homeHref}
-					>{m['error.actions.home']()}</a
-				>
-				<button type="button" class="ac-btn ac-btn--lg" onclick={events.onBack}
-					>{m['error.actions.back']()}</button
-				>
-			{/if}
-		</div>
-	</div>
-
-	<div class="ac-error__stage" aria-hidden="true">
-		<div class="ac-error__burst" style:clip-path="polygon({burst})"></div>
-		{#if digits.length}
-			<p class="ac-error__code">
-				{#each digits as digit, i (i)}
-					<span class="ac-error__digit" style:--tilt="{digit.tilt}deg">{digit.char}</span>
-				{/each}
-			</p>
-		{/if}
-		<img class="ac-error__art" src={data.mascot} alt="" />
-		<div class="ac-error__tape">
-			<div class="ac-error__track">
-				{#each [0, 1] as copy (copy)}
-					<span class="ac-error__tape-text">
-						{#each tape as phrase, i (i)}{phrase}<b>✦</b>{/each}
-					</span>
-				{/each}
+	<div class="ac-error__layout">
+		<div class="ac-error__copy">
+			<p class="ac-error__eyebrow">{eyebrow}</p>
+			<svelte:element this={ui.heading ?? 'h1'} id={titleId} class="ac-error__title">
+				{text.title()}
+			</svelte:element>
+			<p class="ac-error__text">{text.text()}</p>
+			<div class="ac-error__actions">
+				{#if action === 'retry'}
+					<button
+						type="button"
+						class="ac-btn ac-btn--primary ac-btn--lg"
+						onclick={events.onRetry}>{m['error.actions.retry']()}</button
+					>
+					<a class="ac-btn ac-btn--lg" href={data.homeHref}>{m['error.actions.home']()}</a
+					>
+				{:else}
+					<a class="ac-btn ac-btn--primary ac-btn--lg" href={data.homeHref}
+						>{m['error.actions.home']()}</a
+					>
+					<button type="button" class="ac-btn ac-btn--lg" onclick={events.onBack}
+						>{m['error.actions.back']()}</button
+					>
+				{/if}
 			</div>
 		</div>
-		<span class="ac-error__sticker">{m['error.sticker']()}</span>
+
+		<div class="ac-error__stage" aria-hidden="true">
+			<div class="ac-error__burst" style:clip-path="polygon({burst})"></div>
+			{#if digits.length}
+				<p class="ac-error__code">
+					{#each digits as digit, i (i)}
+						<span class="ac-error__digit" style:--tilt="{digit.tilt}deg"
+							>{digit.char}</span
+						>
+					{/each}
+				</p>
+			{/if}
+			<img class="ac-error__art" src={data.mascot} alt="" />
+			<div class="ac-error__tape">
+				<div class="ac-error__track">
+					{#each [0, 1] as copy (copy)}
+						<span class="ac-error__tape-text">
+							{#each tape as phrase, i (i)}{phrase}<b>✦</b>{/each}
+						</span>
+					{/each}
+				</div>
+			</div>
+			<span class="ac-error__sticker">{m['error.sticker']()}</span>
+		</div>
 	</div>
 </section>
