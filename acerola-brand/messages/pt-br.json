@@ -572,6 +572,7 @@
 	"error": {
 		"eyebrow": "Erro {status}",
 		"eyebrowOffline": "Sem conexão",
+		"sticker": "Ops!",
 		"actions": {
 			"home": "Ir para o início",
 			"back": "Voltar",

@@ -519,64 +519,152 @@ img.ac-avatar {
 
 /* ---------- Error screen (+error.svelte, 404.html, any status) ---------- */
 
-/* Text on one side, the mascot over the big status code on the other. One action is primary:
- * "home" for 4xx, "retry" for 5xx and offline. */
+/* Text on one side; on the other, a brand stage like the hero: a spinning stamp, the status code in
+ * sticker lettering, the mascot, a running tape and a sticker. One action is primary: "home" for
+ * 4xx, "retry" for 5xx and offline. */
 .ac-error {
 	display: grid;
 	align-items: center;
-	gap: 2.5rem;
+	gap: 3rem;
 	padding: 3.5rem 0;
+	overflow-x: clip;
 }
 /* As the whole page (not a preview inside another page). */
 .ac-error--page {
-	min-height: 70vh;
+	min-height: calc(100svh - 12rem);
 }
 @media (min-width: 768px) {
 	.ac-error {
-		grid-template-columns: 1fr auto;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
 	}
 }
+.ac-error__copy {
+	position: relative;
+	z-index: 1;
+}
+.ac-error__eyebrow {
+	display: inline-flex;
+	margin: 0;
+	padding: 0.4rem 0.9rem;
+	border-radius: var(--radius-full);
+	background: var(--destructive-soft);
+	color: var(--destructive);
+	font-size: 0.8rem;
+	font-weight: 800;
+}
+.ac-error__title {
+	margin: 1rem 0 0;
+	font: 900 clamp(2.75rem, 5.5vw, 4.75rem) / 0.95 var(--font-sans);
+	letter-spacing: -0.045em;
+	text-wrap: balance;
+}
 .ac-error__text {
-	max-width: 28rem;
-	margin: 0.75rem 0 0;
+	max-width: 30rem;
+	margin: 1.25rem 0 0;
 	color: var(--muted-foreground);
+	font-size: 1.125rem;
 	text-wrap: pretty;
 }
 .ac-error__actions {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.75rem;
-	margin-top: 2rem;
+	margin-top: 2.25rem;
 }
+
 .ac-error__stage {
 	position: relative;
+	isolation: isolate;
 	display: grid;
 	place-items: center;
-	width: 20rem;
-	max-width: 100%;
+	width: min(100%, 34rem);
 	aspect-ratio: 1;
-	overflow: hidden;
-	border-radius: var(--radius-sheet);
-	background: var(--card);
 	justify-self: center;
 }
-/* The status code is decoration under the mascot, cut by the bottom edge; the eyebrow says it in
- * words. */
+.ac-error__burst {
+	position: absolute;
+	z-index: -1;
+	inset: 6%;
+	background: var(--primary);
+}
+/* The status code in the hero lettering: Titan One, dark outline, hard shadow in the brand color.
+ * It sits behind the mascot; the eyebrow says it in words. */
 .ac-error__code {
 	position: absolute;
-	bottom: -1.75rem;
+	z-index: 0;
+	top: 2%;
 	left: 50%;
-	transform: translateX(-50%);
-	font: 900 8rem/1 var(--font-sans);
-	letter-spacing: -0.05em;
-	font-variant-numeric: tabular-nums;
-	color: var(--surface);
+	display: flex;
+	margin: 0;
+	translate: -50% 0;
+	font-family: var(--font-display);
+	font-size: clamp(6rem, 15vw, 11rem);
+	line-height: 0.85;
 	user-select: none;
+}
+.ac-error__digit {
+	display: inline-block;
+	color: var(--accent-hero);
+	-webkit-text-stroke: 0.05em var(--crust);
+	paint-order: stroke fill;
+	text-shadow:
+		0.035em 0.035em 0 var(--primary-foreground),
+		0.07em 0.07em 0 var(--crust);
+	transform: rotate(var(--tilt));
+	will-change: transform;
+}
+.ac-error__digit:nth-child(even) {
+	color: var(--foreground);
 }
 .ac-error__art {
 	position: relative;
-	width: 10rem;
-	margin-bottom: 4rem;
+	z-index: 1;
+	width: 62%;
+	margin-top: 22%;
+	will-change: transform;
+}
+.ac-error__tape {
+	position: absolute;
+	z-index: 2;
+	left: -6%;
+	bottom: 12%;
+	width: 112%;
+	overflow: hidden;
+	padding: 0.55rem 0;
+	rotate: -5deg;
+	background: var(--foreground);
+	color: var(--background);
+	font-family: var(--font-display);
+	font-size: clamp(1rem, 2vw, 1.6rem);
+	text-transform: uppercase;
+	white-space: nowrap;
+	box-shadow: var(--shadow-float);
+}
+.ac-error__track {
+	display: flex;
+	width: max-content;
+}
+.ac-error__tape-text b {
+	margin: 0 0.6em;
+	color: var(--primary);
+	font-weight: 400;
+}
+.ac-error__sticker {
+	position: absolute;
+	z-index: 3;
+	right: 4%;
+	top: 30%;
+	padding: 0.5em 0.9em;
+	rotate: 10deg;
+	border-radius: var(--radius-full);
+	background: var(--warning);
+	color: var(--crust);
+	font-family: var(--font-display);
+	font-size: clamp(0.9rem, 1.6vw, 1.25rem);
+	text-transform: uppercase;
+	box-shadow:
+		0 0 0 3px var(--crust),
+		4px 5px 0 3px var(--crust);
 }
 
 @media (prefers-reduced-motion: reduce) {
