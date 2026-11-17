@@ -37,7 +37,7 @@ jobs:
       run:
         working-directory: acerola-brand
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # Full history: the next step checks that the tag is on main.
           fetch-depth: 0
@@ -58,7 +58,7 @@ jobs:
             exit 1
           fi
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -97,7 +97,7 @@ jobs:
           aws s3 sync build/downloads "s3://$BUCKET/downloads" --endpoint-url "$ENDPOINT" --delete \
             --cache-control "public, max-age=300"
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: acerola-brand/build
 
@@ -109,4 +109,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
