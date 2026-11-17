@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
+	import AcerolaErrorScreen from '#lib/components/acerola-error-screen/acerola-error-screen.svelte';
 	import AcerolaSection from '#lib/components/acerola-section/acerola-section.svelte';
 	import { m } from '#lib/paraglide/messages.js';
+	import { errorKind } from '#lib/utils/error.util.ts';
 	import { fileUrl } from '#lib/utils/url.util.ts';
 
 	type Screen = 'list' | 'activity' | 'settings';
@@ -54,6 +57,16 @@
 		{ id: 'paused', tone: 'ac-stat--warning', value: '1', label: m['demo.stats.paused']() },
 		{ id: 'planned', tone: '', value: '3', label: m['demo.stats.planned']() }
 	]);
+
+	/** The error screen preview: the same component +error.svelte renders, one variant at a time. */
+	const errorSamples = [
+		{ id: '404', status: 404, online: true },
+		{ id: '403', status: 403, online: true },
+		{ id: '500', status: 500, online: true },
+		{ id: '503', status: 503, online: true },
+		{ id: 'offline', status: 0, online: false }
+	];
+	let errorSample = $state(errorSamples[0]);
 
 	const screens: { id: Screen; label: () => string }[] = [
 		{ id: 'list', label: m['screens.nav.list'] },
@@ -227,5 +240,38 @@
 			</div>
 			{@render nav('activity')}
 		</article>
+	</div>
+</AcerolaSection>
+
+<AcerolaSection
+	data={{
+		id: 'error',
+		eyebrow: m['screens.error.eyebrow'](),
+		title: m['screens.error.title'](),
+		lead: m['screens.error.lead']()
+	}}
+>
+	<div class="ac-chip-tabs" role="tablist" aria-label={m['screens.error.status']()}>
+		{#each errorSamples as sample (sample.id)}
+			<button
+				type="button"
+				class="ac-chip"
+				role="tab"
+				aria-selected={sample.id === errorSample.id}
+				onclick={() => (errorSample = sample)}
+				>{sample.online ? sample.status : m['error.eyebrowOffline']()}</button
+			>
+		{/each}
+	</div>
+	<div class="mt-6 rounded-sheet bg-background px-6 shadow-float sm:px-10">
+		<AcerolaErrorScreen
+			data={{
+				status: errorSample.status,
+				kind: errorKind(errorSample.status, errorSample.online),
+				mascot,
+				homeHref: resolve('/')
+			}}
+			ui={{ heading: 'h3' }}
+		/>
 	</div>
 </AcerolaSection>

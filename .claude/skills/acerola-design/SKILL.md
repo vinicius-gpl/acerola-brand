@@ -83,6 +83,7 @@ Em Svelte, `lib/components/acerola-<nome>/`. Fora do Svelte, as classes `.ac-*` 
 | Toast/aviso | `rounded-card`, sem borda, fundo e texto no tom do tipo |
 | Vazio | `AcerolaEmptyState`: mascote (ou ícone redondo) + título `font-black` + uma frase + uma ação |
 | Diálogo | folha `rounded-sheet` com `shadow-float`; ação de confirmar `bg-foreground` |
+| Tela de erro | `AcerolaErrorScreen` / `.ac-error`: texto de um lado, mascote sobre o código do outro. Seção 6.1 |
 
 ## 6. Estados obrigatórios
 
@@ -92,6 +93,22 @@ Toda tela que carrega dado tem os quatro, desenhados (nunca tela em branco):
 2. **Vazio**: `AcerolaEmptyState` com a mascote e uma ação.
 3. **Erro**: aviso `destructive-soft` com o que aconteceu e o que fazer (tentar de novo).
 4. **Pronto**: o conteúdo.
+
+### 6.1 Tela de erro 🔒
+
+Todo app tem **uma** tela para qualquer erro (404, 401, 403, 500, 503, sem conexão…), igual à do
+brand book (App → Tela de erro). Nunca a página padrão do framework, do servidor ou do host.
+
+- Modelo pronto em `reference/error-screen/` desta skill (no zip; no acerola-brand a fonte é o
+  próprio site, em `acerola-brand/src/`): `+error.svelte`,
+  `acerola-error-screen.svelte`, `error.util.ts` e as chaves `error.*` em `messages.pt-br.json` e
+  `messages.en.json`. Fora do Svelte, as classes `.ac-error*` do `components.css`.
+- Mascote, eyebrow "Erro {status}", título `ac-title`, uma frase que diz o que fazer e duas ações.
+- Ação principal: **4xx → "Ir para o início"**; **5xx, tempo esgotado, limite e sem conexão →
+  "Tentar de novo"**. A outra vira secundária (`bg-surface`).
+- O código (404) é decoração `aria-hidden`; nunca mostrar `error.message` cru, stack ou id técnico.
+- Site estático: o host serve a tela no 404 (`fallback: '404.html'` no `adapter-static`) e a página
+  leva `noindex`.
 
 E também: foco visível (`ring`), desabilitado com `opacity-60` e `cursor-not-allowed`, e feedback de
 toda ação em até 100ms (toast, `pop`, troca de estado).

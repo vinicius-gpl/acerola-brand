@@ -11,8 +11,11 @@ import { sveltekit } from '@sveltejs/kit/vite';
  */
 const assetsUrl = (process.env.ASSETS_URL ?? '').replace(/\/+$/, '');
 
+/** Public address of the site, for the absolute links in sitemap.xml and robots.txt. */
+const siteUrl = (process.env.SITE_URL || 'https://brand.acerola.app').replace(/\/+$/, '');
+
 export default defineConfig({
-	define: { __ASSETS_URL__: JSON.stringify(assetsUrl) },
+	define: { __ASSETS_URL__: JSON.stringify(assetsUrl), __SITE_URL__: JSON.stringify(siteUrl) },
 	plugins: [
 		tailwindcss(),
 		sveltekit({
@@ -21,7 +24,14 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			adapter: adapter({ pages: 'build', assets: 'build', strict: true }),
+			// fallback: GitHub Pages serves 404.html for any missing address; it boots the app, which
+			// renders +error.svelte with the right status.
+			adapter: adapter({
+				pages: 'build',
+				assets: 'build',
+				fallback: '404.html',
+				strict: true
+			}),
 			// Relative paths in the generated HTML: the same build opens at /, at GitHub Pages'
 			// /<repo> or at a bucket root, without configuring a base.
 			paths: { relative: true },

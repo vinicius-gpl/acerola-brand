@@ -373,6 +373,12 @@
 			"eyebrow": "Esta semana",
 			"title": "Atividade",
 			"toast": "+1 episódio marcado"
+		},
+		"error": {
+			"eyebrow": "Erro",
+			"title": "Tela de erro",
+			"lead": "Uma tela só para qualquer erro: 404, 401, 403, 500, 503 e sem conexão. Em 4xx a ação principal leva ao início; em 5xx e sem conexão, tenta de novo. Nunca mostra a mensagem crua do erro.",
+			"status": "Código de erro"
 		}
 	},
 	"landing": {
@@ -561,6 +567,55 @@
 				"title": "Traga a marca",
 				"text": "theme.css + components.css, ou o tema do tokens.json no Android."
 			}
+		}
+	},
+	"error": {
+		"eyebrow": "Erro {status}",
+		"eyebrowOffline": "Sem conexão",
+		"actions": {
+			"home": "Ir para o início",
+			"back": "Voltar",
+			"retry": "Tentar de novo"
+		},
+		"badRequest": {
+			"title": "Algo no pedido não fechou",
+			"text": "O endereço ou os dados enviados vieram de um jeito que a gente não entende. Confira e tente de novo pelo início."
+		},
+		"unauthorized": {
+			"title": "Entre para continuar",
+			"text": "Esta página é só para quem entrou na conta. Entre e volte aqui."
+		},
+		"forbidden": {
+			"title": "Esta página não é para você",
+			"text": "Sua conta não tem acesso a isto. Se acha que deveria ter, fale com quem cuida do app."
+		},
+		"notFound": {
+			"title": "Página não encontrada",
+			"text": "O endereço pode ter mudado ou nunca ter existido. Volte ao início e siga de lá."
+		},
+		"timeout": {
+			"title": "Demorou demais",
+			"text": "A resposta não chegou a tempo. Tente de novo em instantes."
+		},
+		"tooMany": {
+			"title": "Calma, muitos pedidos",
+			"text": "Foram muitos pedidos em pouco tempo. Espere um minuto e tente de novo."
+		},
+		"server": {
+			"title": "Algo quebrou do nosso lado",
+			"text": "O erro foi nosso, não seu. Tente de novo; se continuar, volte mais tarde."
+		},
+		"unavailable": {
+			"title": "Fora do ar por um momento",
+			"text": "O serviço está em manutenção ou sobrecarregado. Tente de novo em alguns minutos."
+		},
+		"offline": {
+			"title": "Você está sem internet",
+			"text": "Confira o Wi-Fi ou os dados móveis e tente de novo."
+		},
+		"unknown": {
+			"title": "Algo deu errado",
+			"text": "Não sabemos bem o que houve. Tente de novo; se continuar, volte ao início."
 		}
 	}
 }

@@ -103,10 +103,49 @@ const tokensInSkill = (prefix) => ({
 	]
 });
 
+/**
+ * The error screen every app copies: the brand book's own files, plus its i18n keys, ship inside
+ * the design skill as acerola-design/reference/error-screen/. The site is the source; no copy to
+ * keep in sync by hand.
+ */
+const ERROR_SCREEN = [
+	'src/routes/+error.svelte',
+	'src/lib/components/acerola-error-screen/acerola-error-screen.svelte',
+	'src/lib/utils/error.util.ts'
+];
+
+async function errorScreenInSkill(prefix) {
+	const dir = posix(join(prefix, 'acerola-design', 'reference', 'error-screen'));
+	const files = {};
+	for (const path of ERROR_SCREEN) {
+		files[`${dir}/${path.split('/').pop()}`] = [
+			await readFile(join(root, path)),
+			{ mtime: MTIME }
+		];
+	}
+	for (const locale of ['pt-br', 'en']) {
+		const messages = JSON.parse(
+			await readFile(join(root, 'messages', `${locale}.json`), 'utf8')
+		);
+		const json = JSON.stringify({ error: messages.error }, null, '\t') + '\n';
+		files[`${dir}/messages.${locale}.json`] = [
+			new TextEncoder().encode(json),
+			{ mtime: MTIME }
+		];
+	}
+	return files;
+}
+
+/** Everything the design skill carries besides its SKILL.md. */
+const skillExtras = async (prefix) => ({
+	...tokensInSkill(prefix),
+	...(await errorScreenInSkill(prefix))
+});
+
 const template = async (prefix) => ({
 	...(await collect(STANDARD_FILES.map((path) => [join(repo, path), join(prefix, path)]))),
 	...(await collect([[join(repo, 'template'), prefix]])),
-	...tokensInSkill(`${prefix}/.claude/skills`)
+	...(await skillExtras(`${prefix}/.claude/skills`))
 });
 
 const ZIPS = {
@@ -115,12 +154,12 @@ const ZIPS = {
 			[brand, 'acerola-brand'],
 			[skills, 'acerola-brand/skills']
 		])),
-		...tokensInSkill('acerola-brand/skills')
+		...(await skillExtras('acerola-brand/skills'))
 	}),
 	'acerola-template.zip': () => template('acerola-template'),
 	'acerola-skills.zip': async () => ({
 		...(await collect([[skills, '']])),
-		...tokensInSkill('')
+		...(await skillExtras(''))
 	}),
 	'acerola-logos.zip': () =>
 		collect([

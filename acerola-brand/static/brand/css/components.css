@@ -517,6 +517,68 @@ img.ac-avatar {
 	margin-top: 0.5rem;
 }
 
+/* ---------- Error screen (+error.svelte, 404.html, any status) ---------- */
+
+/* Text on one side, the mascot over the big status code on the other. One action is primary:
+ * "home" for 4xx, "retry" for 5xx and offline. */
+.ac-error {
+	display: grid;
+	align-items: center;
+	gap: 2.5rem;
+	padding: 3.5rem 0;
+}
+/* As the whole page (not a preview inside another page). */
+.ac-error--page {
+	min-height: 70vh;
+}
+@media (min-width: 768px) {
+	.ac-error {
+		grid-template-columns: 1fr auto;
+	}
+}
+.ac-error__text {
+	max-width: 28rem;
+	margin: 0.75rem 0 0;
+	color: var(--muted-foreground);
+	text-wrap: pretty;
+}
+.ac-error__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-top: 2rem;
+}
+.ac-error__stage {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 20rem;
+	max-width: 100%;
+	aspect-ratio: 1;
+	overflow: hidden;
+	border-radius: var(--radius-sheet);
+	background: var(--card);
+	justify-self: center;
+}
+/* The status code is decoration under the mascot, cut by the bottom edge; the eyebrow says it in
+ * words. */
+.ac-error__code {
+	position: absolute;
+	bottom: -1.75rem;
+	left: 50%;
+	transform: translateX(-50%);
+	font: 900 8rem/1 var(--font-sans);
+	letter-spacing: -0.05em;
+	font-variant-numeric: tabular-nums;
+	color: var(--surface);
+	user-select: none;
+}
+.ac-error__art {
+	position: relative;
+	width: 10rem;
+	margin-bottom: 4rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.ac-btn,
 	.ac-chip,
