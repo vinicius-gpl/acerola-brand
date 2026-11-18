@@ -14,6 +14,8 @@ Antes de mexer, carregue a skill certa e siga-a:
 | commit, branch, PR, issue, workflow, release | `acerola-git` |
 
 - Commit `[tipo](local): Mensagem`; locais em `acerola.config.json` (`site`, `kit`, `ci`, `docs`, `claude`, `deps`).
+- **Só três branches vivas: `main`, `develop` e a de trabalho.** Juntou, apaga (local e remota).
+  Outra branch só fica se quem administra pedir de forma específica.
 - **Tudo que o usuário não vê é em inglês**: pastas, arquivos, rotas, identificadores, chaves de
   JSON/config/i18n, banco, logs e comentários de código. Português só na tela (via i18n), nas
   docs, nas skills e em commit/PR.

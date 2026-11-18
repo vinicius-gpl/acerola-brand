@@ -17,6 +17,8 @@ Antes de mexer, carregue a skill certa e siga-a:
 - **i18n obrigatório**: nenhum texto de tela no código; chave em inglês e aninhada por assunto,
   sem `_`/`-` emendando contexto.
 - Commit `[tipo](local): Mensagem`; locais em `acerola.config.json` (`commit.scopes`).
+- **Só três branches vivas: `main`, `develop` e a de trabalho.** Juntou, apaga (local e remota).
+  Outra branch só fica se quem administra pedir de forma específica.
 - `node scripts/design/check-design.mjs` e `node scripts/i18n/check-i18n.mjs` precisam passar
   (hooks do Claude, `pre-commit` e CI).
 - Licença MPL-2.0.

@@ -1,5 +1,10 @@
 # Versões
 
+## 0.2.2 · 17 nov 2026
+
+- **Padrão:** só três branches vivas, `main`, `develop` e a de trabalho; juntou, apaga (skill
+  `acerola-git` e o `CLAUDE.md` do kit).
+
 ## 0.2.1 · 17 nov 2026
 
 - **Publicação da 0.2.0:** a 0.2.0 não chegou ao ar (o lint do deploy recusou um arquivo fora do

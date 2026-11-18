@@ -37,6 +37,10 @@ Igual em todo projeto, independente da linguagem. Os hooks (lefthook) travam o q
 
 - Nome em kebab-case e **em inglês** (ninguém de fora vê branch): `feature/hero-titan`,
   `bugfix/favicon-foreground`, nunca `feature/tela-de-lista`. Prefixo `feature/`, nunca `feat/`.
+- 🔒 **Só três branches vivas: `main`, `develop` e a de trabalho do momento.** Juntou, apaga na
+  hora, local e remota (`git branch -d <nome>` e `git push origin --delete <nome>`). Nenhuma
+  `feature/`, `bugfix/`, `release/` ou `hotfix/` fica parada depois do merge. Só se mantém outra
+  branch quando quem administra pede, de forma específica, por aquela branch.
 - Tag de versão `vX.Y.Z` (semver) na `main`: regras na seção 2.1.
 - `scripts/git/branch-guard.sh` trava commit na `main`/`develop` e push na `main`. Quem
   administra libera a própria máquina: `git config project.admin true`.
@@ -112,3 +116,4 @@ Semanal, na `develop`, agrupado, com o prefixo do padrão para passar no hook:
 3. Merge na `main` e na `develop` (`[merge](local): Versão X.Y.Z`).
 4. Tag anotada `vX.Y.Z` no merge da `main` e `git push origin vX.Y.Z` (seção 2.1).
 5. A tag dispara `<local>-deploy.yml` e `<local>-release.yml`, que publicam a partir dela.
+6. Apaga a `release/X.Y.Z`, local e remota (seção 2): sobram só `main` e `develop`.
