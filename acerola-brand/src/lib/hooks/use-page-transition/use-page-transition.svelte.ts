@@ -15,7 +15,9 @@ export function usePageTransition(getTarget: () => HTMLElement | undefined) {
 		if (!navigation.to || navigation.from?.url.pathname === navigation.to.url.pathname) return;
 
 		// A cancelled navigation stays on this page, so it must come back.
-		navigation.complete.catch(() => gsap.set(target, { clearProps: 'opacity,visibility,transform' }));
+		navigation.complete.catch(() =>
+			gsap.set(target, { clearProps: 'opacity,visibility,transform' })
+		);
 
 		return new Promise<void>((resolve) => {
 			gsap.to(target, {

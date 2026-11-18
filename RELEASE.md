@@ -1,5 +1,10 @@
 # Versões
 
+## 0.2.1 · 17 nov 2026
+
+- **Publicação da 0.2.0:** a 0.2.0 não chegou ao ar (o lint do deploy recusou um arquivo fora do
+  formato). A 0.2.1 traz a mesma transição entre páginas, agora publicada.
+
 ## 0.2.0 · 17 nov 2026
 
 - **Transição entre páginas:** ao trocar de página, a atual sai subindo e some, e a nova entra
