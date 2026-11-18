@@ -1,5 +1,10 @@
 # Versões
 
+## 0.2.3 · 17 nov 2026
+
+- **Documentação:** `docs/` com uma página por área (marca, componentes, telas, padrão) e prints de
+  cada tela nos dois temas; o README abre com um GIF Hairline do leque de tokens e uma galeria.
+
 ## 0.2.2 · 17 nov 2026
 
 - **Padrão:** só três branches vivas, `main`, `develop` e a de trabalho; juntou, apaga (skill

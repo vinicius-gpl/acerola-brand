@@ -1,5 +1,12 @@
 # Acerola · design e padrão
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/github/hairline-fan-dark.gif">
+    <img alt="Leque de amostras com sete lâminas, uma por token de cor, que se abre em volta da lâmina apontada" src="docs/github/hairline-fan-light.gif" width="560">
+  </picture>
+</p>
+
 O ponto de partida de todo projeto Acerola (reader, sync, ticket, mangadex…):
 
 - **Design system** no padrão do acerola-sync: cores, tipografia, forma, componentes, ícone e
@@ -9,8 +16,47 @@ O ponto de partida de todo projeto Acerola (reader, sync, ticket, mangadex…):
 
 O próprio repositório segue o padrão que ele entrega.
 
-- **Site**: GitHub Pages (`https://<usuario>.github.io/acerola-brand/`)
-- **Arquivos**: bucket R2 (`<ASSETS_URL>/brand/...` e `<ASSETS_URL>/downloads/*.zip`)
+- **Site**: https://brand.acerola.app (GitHub Pages)
+- **Arquivos**: https://cdn.acerola.app (R2: `/brand/...` e `/downloads/*.zip`)
+- **Documentação**: [`docs/`](docs/README.md), com prints de cada tela nos dois temas
+
+<table>
+  <tr>
+    <td width="50%">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/github/dark/home-hero.webp">
+        <img alt="Hero do brand book" src="docs/github/light/home-hero.webp">
+      </picture>
+    </td>
+    <td width="50%">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/github/dark/app-screens.webp">
+        <img alt="Telas do app" src="docs/github/light/app-screens.webp">
+      </picture>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/github/dark/home-colors.webp">
+        <img alt="Paleta de cores" src="docs/github/light/home-colors.webp">
+      </picture>
+    </td>
+    <td width="50%">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/github/dark/error-404.webp">
+        <img alt="Tela de erro" src="docs/github/light/error-404.webp">
+      </picture>
+    </td>
+  </tr>
+</table>
+
+| Página | O que mostra |
+| --- | --- |
+| [Marca](docs/brand.md) | ícone e mascote, tipografia, cores, forma, ícones de app e downloads |
+| [Componentes](docs/components.md) | as peças do sync e os componentes em HTML (`.ac-*`) |
+| [Telas](docs/screens.md) | telas do app, tela de erro, site de exemplo e o celular |
+| [Padrão de projeto](docs/standard.md) | skills, estrutura, git, hooks e como começar um projeto |
 
 ## O padrão em uma tela
 
@@ -65,24 +111,27 @@ ou em qualquer outro endereço.
 
 ## Publicação
 
-[`site-deploy.yml`](.github/workflows/site-deploy.yml) roda a cada push na `main`: lint, check,
-design, i18n, build, envia `brand/` e `downloads/` para o R2 e publica o site no GitHub Pages.
+[`site-deploy.yml`](.github/workflows/site-deploy.yml) roda **só com tag de versão** `vX.Y.Z`,
+criada na `main` pelo fluxo de release (skill `acerola-git`): lint, check, design, i18n, build,
+envia `brand/` e `downloads/` para o R2 e publica o site no GitHub Pages. Push em branch não
+publica nada.
 
-1. **Pages**: Settings → Pages → Source: **GitHub Actions**.
+1. **Pages**: Settings → Pages → Source: **GitHub Actions**; domínio `brand.acerola.app`; no
+   ambiente `github-pages`, só tags `v*`.
 2. **R2** (opcional): secrets `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`;
-   variables `R2_BUCKET` e `ASSETS_URL` (endereço público do bucket). No bucket, CORS liberado para
-   `GET`, porque os apps carregam fontes e CSS de lá.
+   variables `R2_BUCKET`, `ASSETS_URL` (`https://cdn.acerola.app`) e `SITE_URL`. No bucket, CORS
+   liberado para `GET`, porque os apps carregam fontes e CSS de lá.
 
 ## Usar nos apps
 
 ```html
-<link rel="stylesheet" href="<ASSETS_URL>/brand/css/acerola.css" />
+<link rel="stylesheet" href="https://cdn.acerola.app/brand/css/acerola.css" />
 ```
 
 ```css
 @import 'tailwindcss';
-@import '<ASSETS_URL>/brand/css/tailwind.css';
-@import '<ASSETS_URL>/brand/css/components.css';
+@import 'https://cdn.acerola.app/brand/css/tailwind.css';
+@import 'https://cdn.acerola.app/brand/css/components.css';
 ```
 
 Projeto novo: baixe `acerola-template.zip`, descompacte na raiz e siga a página **Padrão** do site.
@@ -91,3 +140,5 @@ Projeto novo: baixe `acerola-template.zip`, descompacte na raiz e siga a página
 
 [MPL-2.0](LICENSE): código, CSS, scripts, skills, docs, ícone e mascote. As fontes (DM Sans, Noto
 Serif e Titan One) seguem a SIL Open Font License 1.1 (`acerola-brand/static/brand/fonts/LICENSE-*.txt`).
+
+O GIF do topo é uma figura feita com [Hairline](https://github.com/lucasmarkes/hairline), de [@lucasmarkes](https://github.com/lucasmarkes).
