@@ -4,6 +4,7 @@
 	import AcerolaTopbar from '#lib/components/acerola-topbar/acerola-topbar.svelte';
 	import { page } from '$app/state';
 	import { useLocale } from '#lib/hooks/use-locale/use-locale.svelte.ts';
+	import { usePageTransition } from '#lib/hooks/use-page-transition/use-page-transition.svelte.ts';
 	import { useSmoothScroll } from '#lib/hooks/use-smooth-scroll/use-smooth-scroll.svelte.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import { fileUrl } from '#lib/utils/url.util.ts';
@@ -15,6 +16,9 @@
 	// Applies the stored/browser locale after mount (the prerendered HTML is in the base locale).
 	useLocale();
 	useSmoothScroll();
+
+	let main = $state<HTMLElement>();
+	usePageTransition(() => main);
 </script>
 
 <svelte:head>
@@ -39,7 +43,7 @@
 	<AcerolaTopbar />
 {/if}
 
-<main>{@render children()}</main>
+<main bind:this={main}>{@render children()}</main>
 
 {#if !page.error}
 	<footer class="mt-10 bg-mantle">

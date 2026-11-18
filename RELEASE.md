@@ -1,5 +1,11 @@
 # Versões
 
+## 0.2.0 · 17 nov 2026
+
+- **Transição entre páginas:** ao trocar de página, a atual sai subindo e some, e a nova entra
+  subindo (GSAP). Link para seção da mesma página não anima, e com movimento reduzido a página só
+  troca.
+
 ## 0.1.1 · 17 nov 2026
 
 - **Tela de erro sozinha:** sem barra de navegação e rodapé, só o erro e as duas ações, centralizado
