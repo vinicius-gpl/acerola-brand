@@ -12,17 +12,18 @@ prints dos dois temas (o GitHub escolhe o escuro ou o claro conforme o seu).
 
 ## Os prints
 
-- Ficam em [`github/`](github/): `dark/` e `light/`, um arquivo por seção, em WebP.
+- Ficam em [`github/ptbr/prints/`](github/ptbr/prints/): `dark/` e `light/`, um arquivo por
+  seção, em WebP.
 - Tirados do site no ar com o Chrome sem janela, a 1280 × 800 (celular a 390 × 844), com movimento
   reduzido para nenhuma animação sair pela metade.
 - Mudou uma tela? Tire o print de novo depois do deploy, com o mesmo nome de arquivo.
 
-## O GIF do README
+## A capa do README
 
-O leque do topo do README é uma figura [Hairline](https://github.com/lucasmarkes/hairline): uma
-cartela de amostras com sete lâminas, uma por token de cor (`crust` → `accent`). A lâmina sob o
-ponteiro fica parada e o leque se abre em volta dela. O GIF é uma volta do tour da figura, gravado
-quadro a quadro (30 fps) nos dois temas: `github/hairline-fan-dark.gif` e
-`github/hairline-fan-light.gif`.
+`github/ptbr/hero.jpg`, no mesmo molde das capas do acerola-reader e do acerola-sync: logo no
+canto, telas no meio e a frase à direita. A fonte é [`github/source/hero.html`](github/source/hero.html),
+com as cores e as fontes da própria marca. Para gerar de novo (precisa do Chrome):
 
-É uma figura original, de propósito: o padrão proíbe redesenhar o ícone e a mascote.
+```bash
+node docs/github/source/render-hero.mjs
+```

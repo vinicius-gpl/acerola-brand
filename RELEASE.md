@@ -1,5 +1,11 @@
 # Versões
 
+## 0.2.4 · 17 nov 2026
+
+- **README no padrão do reader e do sync:** capa 1920 × 1080 (logo, telas e a frase) no lugar do
+  GIF, galeria com legenda e as imagens em `docs/github/ptbr/`. A capa sai de
+  `docs/github/source/hero.html` com `render-hero.mjs`.
+
 ## 0.2.3 · 17 nov 2026
 
 - **Documentação:** `docs/` com uma página por área (marca, componentes, telas, padrão) e prints de

@@ -9,8 +9,8 @@ tem os quatro estados desenhados: carregando (esqueleto), vazio (mascote e uma a
 pronto.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="github/dark/app-screens.webp">
-  <img alt="Telas do app: lista, vazio, boas-vindas e atividade" src="github/light/app-screens.webp">
+  <source media="(prefers-color-scheme: dark)" srcset="github/ptbr/prints/dark/app-screens.webp">
+  <img alt="Telas do app: lista, vazio, boas-vindas e atividade" src="github/ptbr/prints/light/app-screens.webp">
 </picture>
 
 ## Tela de erro
@@ -21,15 +21,15 @@ mascote, a fita e o adesivo. Em 4xx a ação principal é "Ir para o início"; e
 sem conexão, "Tentar de novo".
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="github/dark/app-error.webp">
-  <img alt="Tela de erro na página de exemplos" src="github/light/app-error.webp">
+  <source media="(prefers-color-scheme: dark)" srcset="github/ptbr/prints/dark/app-error.webp">
+  <img alt="Tela de erro na página de exemplos" src="github/ptbr/prints/light/app-error.webp">
 </picture>
 
 É a mesma tela que o site mostra num endereço que não existe:
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="github/dark/error-404.webp">
-  <img alt="Erro 404 do brand book" src="github/light/error-404.webp">
+  <source media="(prefers-color-scheme: dark)" srcset="github/ptbr/prints/dark/error-404.webp">
+  <img alt="Erro 404 do brand book" src="github/ptbr/prints/light/error-404.webp">
 </picture>
 
 ## Site
@@ -37,8 +37,8 @@ sem conexão, "Tentar de novo".
 Um site de produto no padrão: hero de marca, o workspace e os passos.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="github/dark/site.webp">
-  <img alt="Exemplo de site" src="github/light/site.webp">
+  <source media="(prefers-color-scheme: dark)" srcset="github/ptbr/prints/dark/site.webp">
+  <img alt="Exemplo de site" src="github/ptbr/prints/light/site.webp">
 </picture>
 
 ## No celular
@@ -47,20 +47,20 @@ Um site de produto no padrão: hero de marca, o workspace e os passos.
   <tr>
     <td width="33%">
       <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="github/dark/mobile-home.webp">
-        <img alt="Brand book no celular" src="github/light/mobile-home.webp">
+        <source media="(prefers-color-scheme: dark)" srcset="github/ptbr/prints/dark/mobile-home.webp">
+        <img alt="Brand book no celular" src="github/ptbr/prints/light/mobile-home.webp">
       </picture>
     </td>
     <td width="33%">
       <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="github/dark/mobile-app.webp">
-        <img alt="Telas do app no celular" src="github/light/mobile-app.webp">
+        <source media="(prefers-color-scheme: dark)" srcset="github/ptbr/prints/dark/mobile-app.webp">
+        <img alt="Telas do app no celular" src="github/ptbr/prints/light/mobile-app.webp">
       </picture>
     </td>
     <td width="33%">
       <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="github/dark/mobile-error.webp">
-        <img alt="Tela de erro no celular" src="github/light/mobile-error.webp">
+        <source media="(prefers-color-scheme: dark)" srcset="github/ptbr/prints/dark/mobile-error.webp">
+        <img alt="Tela de erro no celular" src="github/ptbr/prints/light/mobile-error.webp">
       </picture>
     </td>
   </tr>

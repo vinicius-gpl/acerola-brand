@@ -1,10 +1,7 @@
 # Acerola · design e padrão
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/github/hairline-fan-dark.gif">
-    <img alt="Leque de amostras com sete lâminas, uma por token de cor, que se abre em volta da lâmina apontada" src="docs/github/hairline-fan-light.gif" width="560">
-  </picture>
+  <img src="docs/github/ptbr/hero.jpg" alt="Acerola Brand" width="85%">
 </p>
 
 O ponto de partida de todo projeto Acerola (reader, sync, ticket, mangadex…):
@@ -18,38 +15,39 @@ O próprio repositório segue o padrão que ele entrega.
 
 - **Site**: https://brand.acerola.app (GitHub Pages)
 - **Arquivos**: https://cdn.acerola.app (R2: `/brand/...` e `/downloads/*.zip`)
-- **Documentação**: [`docs/`](docs/README.md), com prints de cada tela nos dois temas
+
+## Galeria
 
 <table>
   <tr>
-    <td width="50%">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="docs/github/dark/home-hero.webp">
-        <img alt="Hero do brand book" src="docs/github/light/home-hero.webp">
-      </picture>
-    </td>
-    <td width="50%">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="docs/github/dark/app-screens.webp">
-        <img alt="Telas do app" src="docs/github/light/app-screens.webp">
-      </picture>
+    <td colspan="2" align="center">
+      <img src="docs/github/ptbr/prints/dark/home-hero.webp" width="640"><br>
+      <sub><b>Marca</b> — o hero do brand book: letreiro em Titan One, mascote, fitas e adesivos</sub>
     </td>
   </tr>
   <tr>
-    <td width="50%">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="docs/github/dark/home-colors.webp">
-        <img alt="Paleta de cores" src="docs/github/light/home-colors.webp">
-      </picture>
+    <td align="center">
+      <img src="docs/github/ptbr/prints/dark/home-colors.webp" width="320"><br>
+      <sub><b>Cores</b> — a paleta por papel, só token na interface</sub>
     </td>
-    <td width="50%">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="docs/github/dark/error-404.webp">
-        <img alt="Tela de erro" src="docs/github/light/error-404.webp">
-      </picture>
+    <td align="center">
+      <img src="docs/github/ptbr/prints/dark/app-screens.webp" width="320"><br>
+      <sub><b>Telas do app</b> — lista, vazio, boas-vindas e atividade</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="docs/github/ptbr/prints/dark/app-error.webp" width="320"><br>
+      <sub><b>Tela de erro</b> — uma só para qualquer erro, com o palco da marca</sub>
+    </td>
+    <td align="center">
+      <img src="docs/github/ptbr/prints/dark/standard-git.webp" width="320"><br>
+      <sub><b>Padrão</b> — commit, Git-Flow e as travas, iguais em todo projeto</sub>
     </td>
   </tr>
 </table>
+
+## Documentação
 
 | Página | O que mostra |
 | --- | --- |
@@ -57,6 +55,8 @@ O próprio repositório segue o padrão que ele entrega.
 | [Componentes](docs/components.md) | as peças do sync e os componentes em HTML (`.ac-*`) |
 | [Telas](docs/screens.md) | telas do app, tela de erro, site de exemplo e o celular |
 | [Padrão de projeto](docs/standard.md) | skills, estrutura, git, hooks e como começar um projeto |
+
+Cada página tem os prints nos dois temas. Assets dos READMEs: [`docs/github/`](docs/github/).
 
 ## O padrão em uma tela
 
@@ -140,5 +140,3 @@ Projeto novo: baixe `acerola-template.zip`, descompacte na raiz e siga a página
 
 [MPL-2.0](LICENSE): código, CSS, scripts, skills, docs, ícone e mascote. As fontes (DM Sans, Noto
 Serif e Titan One) seguem a SIL Open Font License 1.1 (`acerola-brand/static/brand/fonts/LICENSE-*.txt`).
-
-O GIF do topo é uma figura feita com [Hairline](https://github.com/lucasmarkes/hairline), de [@lucasmarkes](https://github.com/lucasmarkes).

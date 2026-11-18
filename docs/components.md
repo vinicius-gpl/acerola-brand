@@ -16,8 +16,8 @@ do `components.css` são o modelo, e funcionam em qualquer HTML.
 | Vazio | mascote + título `font-black` + uma frase + uma ação |
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="github/dark/home-components.webp">
-  <img alt="Seção As peças do sync" src="github/light/home-components.webp">
+  <source media="(prefers-color-scheme: dark)" srcset="github/ptbr/prints/dark/home-components.webp">
+  <img alt="Seção As peças do sync" src="github/ptbr/prints/light/home-components.webp">
 </picture>
 
 ## Componentes em HTML
@@ -26,8 +26,8 @@ A página **Componentes** do site (`/examples/`) mostra cada classe `.ac-*` com 
 copiar. O print é o começo da página.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="github/dark/components.webp">
-  <img alt="Página Componentes em HTML" src="github/light/components.webp">
+  <source media="(prefers-color-scheme: dark)" srcset="github/ptbr/prints/dark/components.webp">
+  <img alt="Página Componentes em HTML" src="github/ptbr/prints/light/components.webp">
 </picture>
 
 ## Usar
